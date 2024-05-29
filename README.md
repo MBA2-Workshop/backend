@@ -3,7 +3,9 @@
 ## Docker
 
 ### Environment
-Create __.env__ file with the following content, you can find this in the __.env.sample__ file. Replace the values with your own.
+
+Create **.env** file with the following content, you can find this in the **.env.sample** file. Replace the values with your own.
+
 ```
 DEBUG=True #True or False
 ALLOWED_HOSTS=127.0.0.1,localhost #split by ","
@@ -26,25 +28,31 @@ EMAIL_HOST_PASSWORD=password
 ```
 
 ### Build
-```docker-compose build ```
+
+`docker-compose build `
 
 ### Run
-```docker-compose up```
+
+`docker-compose up`
 
 ## Endpoints
 
 ### Server
+
 [http://localhost:8000](http://localhost:8000)
 
-__Admin panel__ : 
+**Admin panel** :
 [http://localhost:8000/admin](http://localhost:8000/admin)
+
 - Username: ${DJANGO_SUPERUSER_USERNAME}
 - Password: ${DJANGO_SUPERUSER_PASSWORD}
 
 ### PgAdmin (database access)
+
 [http://localhost:5050](http://localhost:5050)
 
 In PgAdmin panel you need to add a new server (_Add New Server_):
+
 - General > Name: ${POSTGRES_DB}
 - Connection > Host name/address: db
 - Connection > Username: ${POSTGRES_USER}

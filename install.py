@@ -18,6 +18,8 @@ create_superuser_command = (
 )
 
 # Run the command to create the superuser
-subprocess.run([
-    "python", "manage.py", "shell", "-c", create_superuser_command
-], check=True, env=os.environ)
+subprocess.run(
+    ["python", "manage.py", "shell", "-c", create_superuser_command],
+    check=True,
+    env=os.environ,
+)
