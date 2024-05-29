@@ -1,0 +1,14 @@
+.idea/
+venv/
+.env
+nginx
+.vscode/settings.json
+server.log
+__pycache__/
+*.py[cod]
+*$py.class
+uploads/*
+!uploads/defaults/
+.DS_Store
+.DS_Store?
+.~lock.*
