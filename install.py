@@ -11,8 +11,8 @@ print("Creating superuser...")
 create_superuser_command = (
     "from django.contrib.auth import get_user_model; "
     "User = get_user_model(); "
-    "User.objects.create_superuser(os.environ['DJANGO_SUPERUSER_USERNAME'], "
-    "os.environ['DJANGO_SUPERUSER_EMAIL'], os.environ['DJANGO_SUPERUSER_PASSWORD']) "
+    "User.objects.create_superuser(username=os.environ['DJANGO_SUPERUSER_USERNAME'], "
+    "email=os.environ['DJANGO_SUPERUSER_EMAIL'], password=os.environ['DJANGO_SUPERUSER_PASSWORD']) "
     "if not User.objects.filter(username=os.environ['DJANGO_SUPERUSER_USERNAME']).exists() "
     "else None"
 )
