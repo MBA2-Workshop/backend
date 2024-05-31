@@ -32,8 +32,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = CustomUserManager()
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
     def set_password(self, raw_password):
         self.password = make_password(raw_password)
