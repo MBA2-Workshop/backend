@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "main",
     "user",
+    "education",
     "event",
     "example"
 ]

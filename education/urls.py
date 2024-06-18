@@ -1,10 +1,10 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from event import views
+from education import views
 
 
 router = DefaultRouter()
-router.register(r'event', views.EventViewSet, basename='event')
+router.register(r'training', views.TrainingViewSet, basename='training')
 
 urlpatterns = [
     path('', include(router.urls)),
