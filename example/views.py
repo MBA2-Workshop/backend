@@ -51,4 +51,8 @@ class ExampleViewSet(viewsets.ViewSet):
         serializer.save()
         return Response(serializer.data)
 
-    # Le delete provient de l'héritage de viewsets.ViewSet, /example/<id>
+    def destroy(self, request, pk=None):
+        # Supprimer un example par son id, /example/<id>/
+        instance = self.model.objects.get(pk=pk)
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
