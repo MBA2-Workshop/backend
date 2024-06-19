@@ -8,7 +8,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'role']
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'role', 'cfa']
 
 
 class UserSignupSerializer(serializers.ModelSerializer):
@@ -16,7 +16,7 @@ class UserSignupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password', 'first_name', 'last_name', 'role']
+        fields = ['username', 'email', 'password', 'first_name', 'last_name', 'role', 'cfa']
 
     def create(self, validated_data):
         user = User.objects.create(
@@ -68,7 +68,8 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
                 'email': user.email,
                 'first_name': user.first_name,
                 'last_name': user.last_name,
-                'role': user.role
+                'role': user.role,
+                'cfa': user.cfa
             }
             data['refresh'] = str(refresh)
             data['access'] = str(refresh.access_token)
