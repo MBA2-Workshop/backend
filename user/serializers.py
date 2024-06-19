@@ -16,7 +16,7 @@ class UserSignupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password', 'first_name', 'last_name']
+        fields = ['username', 'email', 'password', 'first_name', 'last_name', 'role']
 
     def create(self, validated_data):
         user = User.objects.create(
@@ -68,6 +68,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
                 'email': user.email,
                 'first_name': user.first_name,
                 'last_name': user.last_name,
+                'role': user.role
             }
             data['refresh'] = str(refresh)
             data['access'] = str(refresh.access_token)
