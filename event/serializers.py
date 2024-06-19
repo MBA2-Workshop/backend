@@ -36,3 +36,9 @@ class EventSerializer(serializers.ModelSerializer):
                 'instructor': 'Instructor must have a role of 2 or higher'
             })
         return attrs
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['start_date'] = instance.start_date.strftime('%Y-%m-%dT%H:%M:%S')
+        data['end_date'] = instance.end_date.strftime('%Y-%m-%dT%H:%M:%S')
+        return data
