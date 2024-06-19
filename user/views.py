@@ -10,6 +10,20 @@ from user.serializers import UserSerializer, CustomTokenObtainPairSerializer, \
 from django.contrib.auth.backends import BaseBackend, ModelBackend
 
 
+@api_view(['POST'])
+@permission_classes([permissions.AllowAny])
+def set_new_password_token(request):
+    token = request.data.get('token')
+    password = request.data.get('password')
+    user = User.objects.filter(new_password_token=token).first()
+    if not user:
+        return Response({"message": "Invalid token"}, status=status.HTTP_400_BAD_REQUEST)
+    user.set_password(password)
+    user.new_password_token = None
+    user.save()
+    return Response({"message": "Password updated"}, status=status.HTTP_200_OK)
+
+
 class CustomUserBackend(ModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
         try:

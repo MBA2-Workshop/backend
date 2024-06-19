@@ -12,5 +12,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('login/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('refresh/', CustomTokenRefreshView.as_view(), name='token_refresh'),
-    path('signup/', SignupView.as_view(), name='signup')
+    path('signup/', SignupView.as_view(), name='signup'),
+    path('password/', views.set_new_password_token, name='set_new_password_token'),
 ]

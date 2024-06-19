@@ -6,6 +6,7 @@ from user.permissions import IsInstructor, IsCfa
 from education.models import Training
 from education.serializers import TrainingSerializer, CfaStudentSerializer, \
     CfaInstructorSerializer
+from user.utils import set_token_send_email
 
 
 class TrainingViewSet(viewsets.ViewSet):
@@ -105,6 +106,7 @@ class CfaStudentViewSet(viewsets.ViewSet):
         serializer = self.serializer_class(data=request.data, context=context)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
+            set_token_send_email(serializer.instance)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -175,6 +177,7 @@ class CfaInstructorViewSet(viewsets.ViewSet):
         serializer = self.serializer_class(data=request.data, context=context)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
+            set_token_send_email(serializer.instance)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
