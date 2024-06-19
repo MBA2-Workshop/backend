@@ -3,10 +3,9 @@ from django.db import models
 
 class Event(models.Model):
     label = models.CharField(max_length=255)
-    # owner of the event
     user = models.ForeignKey('user.User', on_delete=models.CASCADE)
+    training = models.ForeignKey('education.Training', on_delete=models.CASCADE, null=True, blank=True)
     instructor = models.ForeignKey('user.User', on_delete=models.CASCADE, related_name='instructor', null=True, blank=True)
-    # classroom = models.ForeignKey('main.Training', on_delete=models.CASCADE, null=True, blank=True)
     type = models.IntegerField(choices=[
         (1, 'personal'),
         (2, 'course'),

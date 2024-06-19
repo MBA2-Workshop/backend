@@ -17,6 +17,10 @@ class EventSerializer(serializers.ModelSerializer):
             if user.role < 2:
                 self.initial_data['instructor'] = None
 
+        if user.role < 2:
+            self.initial_data['training'] = None
+            self.initial_data['type'] = 1
+
         start_date = datetime.datetime.strptime(
         self.initial_data.get('start_date'), '%Y-%m-%dT%H:%M:%S')
         end_date = datetime.datetime.strptime(
@@ -34,6 +38,14 @@ class EventSerializer(serializers.ModelSerializer):
         if instructor and instructor.role < 2:
             raise serializers.ValidationError({
                 'instructor': 'Instructor must have a role of 2 or higher'
+            })
+        if attrs.get('training') and attrs.get('type') != 2:
+            raise serializers.ValidationError({
+                'type': 'Type must be 2 for training events'
+            })
+        if attrs.get('type') == 2 and not attrs.get('training'):
+            raise serializers.ValidationError({
+                'training': 'Training is required for training events'
             })
         return attrs
 
