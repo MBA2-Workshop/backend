@@ -1,3 +1,4 @@
+import uuid
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
@@ -35,6 +36,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         (3, 'CFA'),
     ], default=1)
     cfa = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, default=None)
+    new_password_token = models.CharField(max_length=128, null=True, blank=True, default=None)
 
     objects = CustomUserManager()
 
@@ -47,6 +49,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def check_password(self, raw_password):
         return check_password(raw_password, self.password)
+
+    def set_new_password_token(self):
+        self.new_password_token = str(uuid.uuid4())
+        self.save()
+        return self.new_password_token
 
     def __str__(self):
         return self.username
