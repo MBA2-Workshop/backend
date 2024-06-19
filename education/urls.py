@@ -5,6 +5,7 @@ from education import views
 
 router = DefaultRouter()
 router.register(r'training', views.TrainingViewSet, basename='training')
+router.register(r'student', views.CfaStudentViewSet, basename='student')
 
 urlpatterns = [
     path('', include(router.urls)),
