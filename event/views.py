@@ -42,6 +42,11 @@ class EventViewSet(viewsets.ViewSet):
                 Q(pk=pk) & (Q(user=request.user) | Q(instructor=request.user) | Q(training__instructor=request.user))
             ).distinct()
             instance = queryset.first()
+        if request.user.role == 1:
+            queryset = self.model.objects.filter(
+                Q(pk=pk) & (Q(user=request.user) | Q(training__students=request.user))
+            ).distinct()
+            instance = queryset.first()
         if not instance:
             return Response(
                 data={"message": "Event not found"},
