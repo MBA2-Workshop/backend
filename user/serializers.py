@@ -69,7 +69,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
                 'first_name': user.first_name,
                 'last_name': user.last_name,
                 'role': user.role,
-                'cfa': user.cfa
+                'cfa': user.cfa.pk if user.cfa else None
             }
             data['refresh'] = str(refresh)
             data['access'] = str(refresh.access_token)
