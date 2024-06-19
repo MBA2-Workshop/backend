@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework import status, viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -21,11 +22,26 @@ class EventViewSet(viewsets.ViewSet):
 
     def list(self, request):
         queryset = self.model.objects.filter(user=request.user).all()
+        if request.user.role == 2:
+            # if user is an instructor
+            queryset = self.model.objects.filter(
+                Q(user=request.user) | Q(instructor=request.user) | Q(training__instructor=request.user)
+            ).distinct()
+        if request.user.role == 1:
+            # if user is a student
+            queryset = self.model.objects.filter(
+                Q(user=request.user) | Q(training__students=request.user)
+            ).distinct()
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
         instance = self.model.objects.filter(pk=pk, user=request.user).first()
+        if request.user.role == 2:
+            queryset = self.model.objects.filter(
+                Q(pk=pk) & (Q(user=request.user) | Q(instructor=request.user) | Q(training__instructor=request.user))
+            ).distinct()
+            instance = queryset.first()
         if not instance:
             return Response(
                 data={"message": "Event not found"},
