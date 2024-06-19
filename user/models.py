@@ -34,6 +34,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         (2, 'Instructor'),
         (3, 'CFA'),
     ], default=1)
+    cfa = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, default=None)
 
     objects = CustomUserManager()
 
