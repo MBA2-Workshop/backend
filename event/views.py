@@ -1,5 +1,6 @@
 from django.db.models import Q
 from rest_framework import status, viewsets
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from event.models import Event
@@ -92,3 +93,12 @@ class EventViewSet(viewsets.ViewSet):
 
     def perform_destroy(self, instance):
         instance.delete()
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def unique_events_list(request):
+    training_id = request.query_params.get('training')
+    events = Event.objects.filter(training_id=training_id).all()
+    serializer = EventSerializer(events, many=True)
+    return Response(serializer.data)
