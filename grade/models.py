@@ -1,15 +1,12 @@
-from django.utils import timezone
 from django.db import models
 
 
 class Grade(models.Model):
     name = models.CharField(max_length=255)
-    comment = models.TextField()
-    event = models.ForeignKey("event.Event", on_delete=models.CASCADE, related_name="label")
-    student = models.ForeignKey("user.User", related_name="training_students", null=True,
-                                blank=True, on_delete=models.CASCADE)
-    coefficient = models.IntegerField()
+    comment = models.TextField(null=True, blank=True)
+    user = models.ForeignKey("user.User", on_delete=models.CASCADE, related_name="grade_user", null=True, blank=True)
+    event = models.ForeignKey("event.Event", on_delete=models.CASCADE, related_name="grade_event")
+    student = models.ForeignKey("user.User", on_delete=models.CASCADE, related_name="grade_training")
+    coefficient = models.IntegerField(blank=True, default=1)
     value = models.FloatField()
 
-    def __str__(self):
-        return f"{self.name} [{self.value} - {self.coefficient}]"
