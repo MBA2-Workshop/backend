@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework import status, viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -30,12 +31,17 @@ class GradeViewSet(viewsets.ViewSet):
 
     def list(self, request):
         queryset = self.model.objects.filter(user=request.user).all()
+        if request.user.role == 1:
+            # if user is a student
+            queryset = self.model.objects.filter(
+                Q(user=request.user) | Q(student=request.user)
+            ).distinct()
         serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
         print(f"pk: {pk}, user: {request.user}")
-        instance = self.model.objects.filter(pk=pk, user=request.user).first()
+        instance = self.model.objects.filter(Q(pk=pk) & (Q(user=request.user) | Q(training__students=request.user)) ).first()
         if not instance:
             return Response(
                 data={"message": "Grade not found"},
