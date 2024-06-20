@@ -179,7 +179,7 @@ class CfaInstructorViewSet(viewsets.ViewSet):
     serializer_class = CfaInstructorSerializer
     model = User
     http_method_names = ['get', 'post', 'put', 'patch', 'delete']
-    permission_classes = [IsInstructor]
+    permission_classes = [IsCfa]
 
     def list(self, request):
         queryset = self.model.objects.filter(cfa=request.user, role=2).all()
@@ -240,3 +240,21 @@ class CfaInstructorViewSet(viewsets.ViewSet):
 
     def perform_destroy(self, instance):
         instance.delete()
+
+
+@api_view(['GET'])
+@permission_classes([IsInstructor])
+def instructors_list(request):
+    """
+    List all instructors
+    """
+    if request.user.role == 2:
+        # if user is instructor
+        cfa = request.user.cfa
+        instructors = User.objects.filter(cfa=cfa, role=2).all()
+    else:
+        # if user is cfa
+        instructors = User.objects.filter(cfa=request.user, role=2).all()
+
+    serializer = CfaInstructorSerializer(instructors, many=True)
+    return Response(serializer.data)
