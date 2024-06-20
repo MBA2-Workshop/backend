@@ -99,6 +99,6 @@ class EventViewSet(viewsets.ViewSet):
 @permission_classes([IsAuthenticated])
 def unique_events_list(request):
     training_id = request.query_params.get('training')
-    events = Event.objects.filter(training_id=training_id).all()
+    events = Event.objects.filter(training_id=training_id).distinct('label').all()
     serializer = EventSerializer(events, many=True)
     return Response(serializer.data)
