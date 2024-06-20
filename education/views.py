@@ -336,3 +336,24 @@ class GradeViewSet(viewsets.ViewSet):
         return Response(data={"message": "Grade deleted"}, status=status.HTTP_204_NO_CONTENT)
     def perform_destroy(self, instance):
         instance.delete()
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def grades_list(request):
+    """
+    List all instructors
+    """
+    if request.user.role == 1:
+        # if user is student
+        grades = Grade.objects.filter(student=request.user).all()
+    elif request.user.role == 2:
+        # if user is instructor
+        cfa = request.user.cfa
+        grades = Grade.objects.filter(event__training__cfa=cfa).all()
+    else:
+        # if user is cfa
+        grades = Grade.objects.filter(event__training__cfa=request.user).all()
+
+    serializer = GradeSerializer(grades, many=True)
+    return Response(serializer.data)
