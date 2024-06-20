@@ -275,15 +275,6 @@ class GradeViewSet(viewsets.ViewSet):
         context = {'request': request}
         serializer = self.serializer_class(data=request.data, context=context)
         if serializer.is_valid(raise_exception=True):
-            student = serializer.validated_data.get('student')
-            event = serializer.validated_data.get('event')
-            if event is None:
-                return Response({"error": "The event is not provided."}, status=status.HTTP_400_BAD_REQUEST)
-            training = event.training
-            if training is None:
-                return Response({"error": "The event does not have a training associated with it."}, status=status.HTTP_400_BAD_REQUEST)
-            if student not in training.students.all():
-                return Response({"error": "The student does not belong to this training class."}, status=status.HTTP_400_BAD_REQUEST)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

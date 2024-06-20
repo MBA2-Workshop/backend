@@ -1,6 +1,7 @@
 from user.models import User
 from rest_framework import serializers
 from education.models import Training, Grade
+from event.models import Event
 
 
 class TrainingSerializer(serializers.ModelSerializer):
@@ -58,6 +59,24 @@ class GradeSerializer(serializers.ModelSerializer):
     def is_valid(self, *, raise_exception=False):
         user = self.context['request'].user
         self.initial_data['user'] = user.id
+        student = User.objects.filter(
+            id=self.initial_data.get('student')).first()
+        event = Event.objects.filter(
+            id=self.initial_data.get('event')).first()
+
+        if event is None:
+            raise serializers.ValidationError({
+                "event": "The event is not provided."
+            })
+        training = event.training
+        if training is None:
+            raise serializers.ValidationError({
+                "training": "The event does not have a training associated with it."
+            })
+        if student not in training.students.all():
+            raise serializers.ValidationError({
+                "student": "The student does not belong to this training class."
+            })
 
         if 'instructor' in self.initial_data:
             if user.role < 2:
