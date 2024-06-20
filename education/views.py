@@ -243,12 +243,16 @@ class CfaInstructorViewSet(viewsets.ViewSet):
 
 
 @api_view(['GET'])
-@permission_classes([IsInstructor])
+@permission_classes([IsAuthenticated])
 def instructors_list(request):
     """
     List all instructors
     """
-    if request.user.role == 2:
+    if request.user.role == 1:
+        # if user is student
+        cfa = request.user.cfa
+        instructors = User.objects.filter(cfa=cfa, role=2).all()
+    elif request.user.role == 2:
         # if user is instructor
         cfa = request.user.cfa
         instructors = User.objects.filter(cfa=cfa, role=2).all()
