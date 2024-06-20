@@ -24,6 +24,11 @@ class TrainingSerializer(serializers.ModelSerializer):
                     })
         return attrs
 
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        data['students'] = CfaStudentSerializer(instance.students.all(), many=True).data
+        return data
+
 
 class CfaStudentSerializer(serializers.ModelSerializer):
     class Meta:
