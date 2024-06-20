@@ -8,4 +8,5 @@ router.register(r'event', views.EventViewSet, basename='event')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('unique-events/', views.unique_events_list, name='unique-events'),
 ]
