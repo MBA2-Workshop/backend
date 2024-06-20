@@ -27,4 +27,8 @@ class GradeSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({
                 'value': 'Value must be between 0 and 20'
             })
+        if attrs.get('coefficient') < 0:
+            raise serializers.ValidationError({
+                'event': 'Coefficient must be superior to 0'
+            })
         return attrs
