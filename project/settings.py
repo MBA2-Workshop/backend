@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "main",
     "user",
     "education",
+    "sign",
     "event",
     "example"
 ]
