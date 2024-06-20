@@ -13,7 +13,7 @@ def set_token_send_email(user):
         'Création de votre mot de passe',
         f'Bonjour {user.first_name} {user.last_name},\n\n'
         f'Veuillez cliquer sur le lien suivant pour créer votre mot de passe:\n'
-        f'http://localhost:3000/user/set-password/{token}',
+        f'http://localhost:3000/set-password?token={token}',
         os.environ.get("EMAIL_HOST_USER", "admin@localhost"),
         [user.email],
         fail_silently=False,
