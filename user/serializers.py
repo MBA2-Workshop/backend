@@ -23,7 +23,8 @@ class UserSignupSerializer(serializers.ModelSerializer):
             username=validated_data['username'],
             email=validated_data['email'],
             first_name=validated_data['first_name'],
-            last_name=validated_data['last_name']
+            last_name=validated_data['last_name'],
+            role=3
         )
         user.set_password(validated_data['password'])
         user.save()
@@ -69,7 +70,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
                 'first_name': user.first_name,
                 'last_name': user.last_name,
                 'role': user.role,
-                'cfa': user.cfa
+                'cfa': user.cfa.pk if user.cfa else None
             }
             data['refresh'] = str(refresh)
             data['access'] = str(refresh.access_token)

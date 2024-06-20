@@ -35,3 +35,16 @@ class CfaStudentSerializer(serializers.ModelSerializer):
         validated_data['role'] = 1
 
         return User.objects.create_user(**validated_data)
+
+
+class CfaInstructorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'first_name', 'last_name']
+
+    def create(self, validated_data):
+        cfa = self.context['request'].user
+        validated_data['cfa'] = cfa
+        validated_data['role'] = 2
+
+        return User.objects.create_user(**validated_data)
