@@ -179,7 +179,7 @@ class CfaInstructorViewSet(viewsets.ViewSet):
     serializer_class = CfaInstructorSerializer
     model = User
     http_method_names = ['get', 'post', 'put', 'patch', 'delete']
-    permission_classes = [IsCfa]
+    permission_classes = [IsInstructor]
 
     def list(self, request):
         queryset = self.model.objects.filter(cfa=request.user, role=2).all()
