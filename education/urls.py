@@ -12,4 +12,5 @@ router.register(r'grade', views.GradeViewSet, basename='grade')
 urlpatterns = [
     path('', include(router.urls)),
     path('trainings/', views.trainings_list, name='training-list'),
+    path('instructors/', views.instructors_list, name='instruction-list'),
 ]
