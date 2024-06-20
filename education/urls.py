@@ -10,4 +10,5 @@ router.register(r'instructor', views.CfaInstructorViewSet, basename='instructor'
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('trainings/', views.trainings_list, name='training-list'),
 ]

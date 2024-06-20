@@ -1,4 +1,5 @@
 from rest_framework import status, viewsets
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from user.models import User
@@ -148,6 +149,26 @@ class CfaStudentViewSet(viewsets.ViewSet):
 
     def perform_destroy(self, instance):
         instance.delete()
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def trainings_list(request):
+    """
+    List all trainings
+    """
+    if request.user.role == 1:
+        # if user is student
+        trainings = Training.objects.filter(students=request.user).all()
+    elif request.user.role == 2:
+        # if user is instructor
+        trainings = Training.objects.filter(instructor=request.user).all()
+    else:
+        # if user is cfa
+        trainings = Training.objects.filter(cfa=request.user).all()
+
+    serializer = TrainingSerializer(trainings, many=True)
+    return Response(serializer.data)
 
 
 class CfaInstructorViewSet(viewsets.ViewSet):
