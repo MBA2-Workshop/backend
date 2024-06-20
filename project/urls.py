@@ -9,7 +9,6 @@ urlpatterns = [
     path("user/", include("user.urls")),
     path("education/", include("education.urls")),
     path("event/", include("event.urls")),
-    path("grade/", include("grade.urls")),
     path('education/', include('education.urls')),
     path("example/", include("example.urls")),
     path("/", include("main.urls")),
