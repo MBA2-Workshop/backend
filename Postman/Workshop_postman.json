@@ -1,0 +1,1306 @@
+{
+	"info": {
+		"_postman_id": "3badb997-6c7b-4ad9-81d8-30197118fbc4",
+		"name": "Pédagogie",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35352269",
+		"_collection_link": "https://mba2-workshop.postman.co/workspace/Team-Workspace~21cadc76-21be-46de-864e-70c0e2ba92b3/collection/35352269-3badb997-6c7b-4ad9-81d8-30197118fbc4?action=share&source=collection_link&creator=35352269"
+	},
+	"item": [
+		{
+			"name": "Example",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}example/example/",
+							"host": [
+								"{{BASE_URL}}example"
+							],
+							"path": [
+								"example",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Toto\",\n    \"is_active\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}example/example/1/",
+							"host": [
+								"{{BASE_URL}}example"
+							],
+							"path": [
+								"example",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Toto\",\n    \"is_active\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}example/example/",
+							"host": [
+								"{{BASE_URL}}example"
+							],
+							"path": [
+								"example",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Toto\",\n    \"is_active\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}example/example/1/",
+							"host": [
+								"{{BASE_URL}}example"
+							],
+							"path": [
+								"example",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Toto\",\n    \"is_active\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}example/example/1/",
+							"host": [
+								"{{BASE_URL}}example"
+							],
+							"path": [
+								"example",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}example/example/1/",
+							"host": [
+								"{{BASE_URL}}example"
+							],
+							"path": [
+								"example",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Extract token and save it\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set(\"token\", jsonData.access);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user2@example.com\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}user/login/",
+							"host": [
+								"{{BASE_URL}}user"
+							],
+							"path": [
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signup",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"users\",\n    \"email\": \"user@examples.com\",\n    \"first_name\": \"Firstname\",\n    \"last_name\": \"Lastname\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}user/signup/",
+							"host": [
+								"{{BASE_URL}}user"
+							],
+							"path": [
+								"signup",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"cafb3996-c63e-4247-b810-e1f65971f286\", // token sent by email\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}user/password/",
+							"host": [
+								"{{BASE_URL}}user"
+							],
+							"path": [
+								"password",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Details",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// Roles\n// 1 = Student\n// 2 = Instructor\n// 3 = CFA\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}user/user/",
+							"host": [
+								"{{BASE_URL}}user"
+							],
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}event/event/2/",
+							"host": [
+								"{{BASE_URL}}event"
+							],
+							"path": [
+								"event",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}event/event/",
+							"host": [
+								"{{BASE_URL}}event"
+							],
+							"path": [
+								"event",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Unique Events",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}event/unique-events/?training=1",
+							"host": [
+								"{{BASE_URL}}event"
+							],
+							"path": [
+								"unique-events",
+								""
+							],
+							"query": [
+								{
+									"key": "training",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"label\": \"Label\",\n    \"start_date\": \"2024-06-18T10:30:00\",\n    \"end_date\": \"2024-06-18T10:45:00\",\n    \"full_day\": false,\n    \"type\": 1, // 1 = personal; 2 = course\n    \"training\": null, // training_id can be null if is student or type = 1\n    \"instructor\": null // user_id if owner is CFA\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}event/event/",
+							"host": [
+								"{{BASE_URL}}event"
+							],
+							"path": [
+								"event",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"label\": \"Label\",\n    \"start_date\": \"2024-06-18T10:30:00\",\n    \"end_date\": \"2024-06-18T10:45:00\",\n    \"full_day\": false,\n    \"type\": 1, // 1 = personal; 2 = course\n    \"training\": 7, // training_id can be null if is student or type = 1\n    \"instructor\": null // user_id if owner is CFA\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}event/event/2/",
+							"host": [
+								"{{BASE_URL}}event"
+							],
+							"path": [
+								"event",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"label\": \"Label\",\n    \"start_date\": \"2024-06-18T10:30:00\",\n    \"end_date\": \"2024-06-18T10:45:00\",\n    \"full_day\": false,\n    \"type\": 1, // 1 = personal; 2 = course\n    \"training\": 7, // training_id can be null if is student or type = 1\n    \"instructor\": null // user_id if owner is CFA\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}event/event/2/",
+							"host": [
+								"{{BASE_URL}}event"
+							],
+							"path": [
+								"event",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}event/event/4/",
+							"host": [
+								"{{BASE_URL}}event"
+							],
+							"path": [
+								"event",
+								"4",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Education",
+			"item": [
+				{
+					"name": "Grade",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Test grade\",\r\n    \"comment\":\"Good grade\", //comment can be null\r\n    \"event\": 1,\r\n    \"student\": 3,\r\n    \"coefficient\":1, //coefficient can be null, by default 1\r\n    \"value\":\"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}education/grade/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"grade",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/grade/1/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"grade",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List Instructor & CFA",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/grade/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"grade",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List  Student",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/grades/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"grades",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Test grade\",\r\n    \"comment\":\"Good grade\", //comment can be null\r\n    \"event\": 1,\r\n    \"student\": 3,\r\n    \"coefficient\":3, //coefficient can be null, by default 1\r\n    \"value\":\"20\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}education/grade/1/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"grade",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Test grade\",\r\n    \"comment\":\"Good grade\", //comment can be null\r\n    \"event\": 1,\r\n    \"student\": 4,\r\n    \"coefficient\":1, //coefficient can be null, by default 1\r\n    \"value\":\"20\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}education/grade/1/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"grade",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/grade/1/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"grade",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Training",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/training/1/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"training",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List ONLY CFA",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/training/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"training",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/trainings/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"trainings",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Training 1\",\n    \"description\": \"Training description 1\",\n    \"students\": [], // List of student ID \n    \"instructor\": null, // ID of instructor for this training\n    \"start_date\": \"2024-06-20T07:27:17\",\n    \"end_date\": \"2024-07-20T07:27:17\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}education/training/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"training",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Training 1\",\n    \"description\": \"Training description 1\",\n    \"students\": [], // List of student ID \n    \"instructor\": null, // ID of instructor for this training\n    \"start_date\": \"2024-06-20T07:27:17\",\n    \"end_date\": \"2024-07-20T07:27:17\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}education/training/2/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"training",
+										"2",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Training 1\",\n    \"description\": \"Training description 1\",\n    \"students\": [], // List of student ID \n    \"instructor\": null, // ID of instructor for this training\n    \"start_date\": \"2024-06-20T07:27:17\",\n    \"end_date\": \"2024-07-20T07:27:17\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}education/training/2/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"training",
+										"2",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/training/2/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"training",
+										"2",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Student",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/student/7/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"student",
+										"7",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Students",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/student/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"student",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"Student 1\",\n    \"email\": \"student1@example.com\",\n    \"first_name\": \"Firstname\",\n    \"last_name\": \"Lastname\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}education/student/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"student",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"Student 3\",\n    \"email\": \"student3@example.com\",\n    \"first_name\": \"Firstname\",\n    \"last_name\": \"Lastname\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}education/student/11/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"student",
+										"11",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"Student 3\",\n    \"email\": \"student3@example.com\",\n    \"first_name\": \"Firstname\",\n    \"last_name\": \"Lastname\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}education/student/11/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"student",
+										"11",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/student/11/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"student",
+										"11",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Student management by CFAs"
+				},
+				{
+					"name": "Instructor",
+					"item": [
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/instructor/12/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"instructor",
+										"12",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List ONLY CFA",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/instructor/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"instructor",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/instructors/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"instructors",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"Instructor 3\",\n    \"email\": \"instructor3@example.com\",\n    \"first_name\": \"Firstname\",\n    \"last_name\": \"Lastname\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}education/instructor/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"instructor",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"Instructor 3 B\",\n    \"email\": \"instructor@example.com\",\n    \"first_name\": \"Firstname\",\n    \"last_name\": \"Lastname\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}education/instructor/12/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"instructor",
+										"12",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"Instructor 3 C\",\n    \"email\": \"instructor@example.com\",\n    \"first_name\": \"Firstname\",\n    \"last_name\": \"Lastname\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}education/instructor/12/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"instructor",
+										"12",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/instructor/12/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"instructor",
+										"12",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "Student management by CFAs"
+				},
+				{
+					"name": "Sign",
+					"item": [
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"label\":\"Sylvain Dendele\",\r\n    \"training\": 1,\r\n    \"event\": 1 \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}education/sign/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"sign",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/sign/1/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"sign",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/sign/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"sign",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"signed\":false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}education/sign/5/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"sign",
+										"5",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Put",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"label\":\"Test1\",\r\n    \"training\": 1,\r\n    \"event\": 1,\r\n    \"date\": \"2024-05-20T12:10:57\",\r\n    \"signed\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}education/sign/5/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"sign",
+										"5",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}education/sign/5/",
+									"host": [
+										"{{BASE_URL}}education"
+									],
+									"path": [
+										"sign",
+										"5",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:8000/",
+			"type": "string"
+		}
+	]
+}
